@@ -21,5 +21,5 @@ docker run --name <CONTAINER NAME> -e POSTGRES_PASSWORD=<PASSWORD> -p 5432:5432 
 ...
 
 ## Authors and acknowledgment
-Michael Salceda
+Michael Salceda  
 Sean Kim
