@@ -4,7 +4,7 @@ FROM postgres:latest
 # Swap to root to avoid using `sudo`
 USER root
 
-# Install Python 3.9 for use in loading data
+# Install base packages for future use
 RUN apt-get update && \
 	apt-get install -y software-properties-common gcc wget && \
 	apt-get update && \
