@@ -7,8 +7,8 @@ This project repo is for Michael Salceda and Sean Kim. This holds our EMSE 6586 
 
 ## Installation
 1. Install Docker on your machine (https://docs.docker.com/get-docker/).
-2. Clone this repository to your local machine.
-3. Build the custom Docker image from the included Dockerfile. Fill in `IMAGE NAME` with whatever Docker image name you want and fill in `<PATH/TO/DOCKERFILE>` with the proper path to the Dockerfile from whatever directory you are working from.
+2. Clone this repository to your machine.
+3. Build the custom Docker image from the included Dockerfile. Fill in `IMAGE NAME` with whatever Docker image name you want, and fill in `<PATH/TO/DOCKERFILE>` with the proper path to the Dockerfile from whatever directory you are working from.
 ```bash
 docker image build -t <IMAGE NAME> <PATH/TO/DOCKERFILE>
 ````
