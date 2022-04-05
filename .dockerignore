@@ -2,3 +2,6 @@
 .gitignore
 Dockerfile*
 README.md
+*.tar.gz
+.ipynb_checkpoints
+.ipynb

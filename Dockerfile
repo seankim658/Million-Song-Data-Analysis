@@ -6,8 +6,8 @@ USER root
 
 # Install base packages for future use
 RUN apt-get update && \
-	apt-get install -y software-properties-common gcc wget && \
-	apt-get update && \
+    apt-get install -y software-properties-common gcc wget && \
+    apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables for container
@@ -33,5 +33,11 @@ RUN set -x && \
 
 # Install necessary Python packages
 RUN mamba install --quiet --yes \
-	psycopg2 && \
-	mamba clean --all -f -y
+    psycopg2 && \
+    mamba clean --all -f -y
+
+# Download data to seed database, decompress
+# file, and remove tar when done
+RUN wget --quiet http://labrosa.ee.columbia.edu/~dpwe/tmp/millionsongsubset.tar.gz && \
+    tar -xvzf millionsongsubset.tar.gz && \
+    rm -f millionsongsubset.tar.gz
