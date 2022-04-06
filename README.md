@@ -11,14 +11,18 @@ This project repo is for Michael Salceda and Sean Kim. This holds our EMSE 6586 
 3. Build the custom Docker image from the included Dockerfile. Fill in `IMAGE NAME` with whatever Docker image name you want, and fill in `<PATH/TO/DOCKERFILE>` with the proper path to the Dockerfile from whatever directory you are working from.
 ```bash
 docker image build -t <IMAGE NAME> <PATH/TO/DOCKERFILE>
+```
+4. Create a `conda` environment using the `conda_environment.yml` file and activate the environment.
+```bash
+conda env create -f <PATH/TO/conda_environment.yml>
+conda activate EMSE6586
 ````
-4. Run the Docker image you just created to run the PostgreSQL server. Give a name to the container using `<CONTAINER NAME>` and supply a default password for PostgreSQL. **NOTE**: You MUST supply a default password or else it will fail to start the PostgreSQL server.
+
+## Usage
+1. Run the Docker image you just created to run the PostgreSQL server. Give a name to the container using `<CONTAINER NAME>` and supply a default password for PostgreSQL. **NOTE**: You MUST supply a default password or else it will fail to start the PostgreSQL server.
 ```bash
 docker run --name <CONTAINER NAME> -e POSTGRES_PASSWORD=<PASSWORD> -p 5432:5432 -d <IMAGE NAME>
 ```
-
-## Usage
-...
 
 ## Authors and acknowledgment
 Michael Salceda  

@@ -1,0 +1,19 @@
+name: EMSE6586
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pandas
+  - python[version='>=3.7']
+  - jupyter
+  - pymongo
+  - pymysql
+  - nb_conda_kernels
+  - scipy
+  - scikit-learn
+  - numpy
+  - matplotlib
+  - psycopg2
+  - seaborn
+  - h5py
+  - pytables
