@@ -17,3 +17,4 @@ dependencies:
   - seaborn
   - h5py
   - pytables
+  - sqlalchemy
