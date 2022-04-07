@@ -19,10 +19,14 @@ conda activate EMSE6586
 ````
 
 ## Usage
-1. Run the Docker image you just created to run the PostgreSQL server. Give a name to the container using `<CONTAINER NAME>` and supply a default password for PostgreSQL. **NOTE**: You MUST supply a default password or else it will fail to start the PostgreSQL server.
+1. Run the Docker image you just created to run the PostgreSQL server. Give a name to the container using `<CONTAINER NAME>`, and specify what port you want to use when accessing the database.
 ```bash
-docker run --name <CONTAINER NAME> -e POSTGRES_PASSWORD=<PASSWORD> -p 5432:5432 -d <IMAGE NAME>
+docker run --name <CONTAINER NAME> -p <PORT>:5432 -d <IMAGE NAME>
 ```
+The Dockerfile specifies the following defaults:
+* Database: `msd_db`
+* Username: `db_user`
+* Password: `LetMeIn`
 
 ## Authors and acknowledgment
 Michael Salceda  

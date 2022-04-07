@@ -1,6 +1,11 @@
 # Build base Docker image with PostgreSQL
 FROM postgres:latest
 
+# Update default PostgreSQL environment variables
+ENV POSTGRES_USER db_user
+ENV POSTGRES_PASSWORD LetMeIn
+ENV POSTGRES_DB msd_db
+
 # Swap to root to avoid using `sudo`
 USER root
 
