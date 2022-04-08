@@ -27,6 +27,7 @@ The Dockerfile specifies the following defaults:
 * Database: `msd_db`
 * Username: `db_user`
 * Password: `LetMeIn`  
+
 The Docker container will take about 15 - 20 minutes to fully get running before being able to access the database as it initializes the PostgreSQL database with the song data.
 
 ## Authors and Acknowledgments
