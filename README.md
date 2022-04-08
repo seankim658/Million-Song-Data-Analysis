@@ -1,6 +1,6 @@
 # EMSE 6586 Million Song Data Analysis
 
-This project repo is for Michael Salceda and Sean Kim. This holds our EMSE 6586 final project: an exploration and analysis of the Million Song dataset (http://millionsongdataset.com/).
+This project repo is for Michael Salceda and Sean Kim. This holds our EMSE 6586 final project: an exploration and analysis of the Million Song dataset (http://millionsongdataset.com/). Due to the size of data available in the entire Million Song dataset, we are only using the Million Song Subset dataset which has 10,000 songs versus the full 1,000,000 songs.
 
 ## Description
 ...
@@ -27,7 +27,8 @@ The Dockerfile specifies the following defaults:
 * Database: `msd_db`
 * Username: `db_user`
 * Password: `LetMeIn`
+The Docker container will take about 15 - 20 minutes to fully get running before being able to access the database as it initializes the PostgreSQL database with the song data.
 
-## Authors and acknowledgment
+## Authors and Acknowledgments
 Michael Salceda  
 Sean Kim
