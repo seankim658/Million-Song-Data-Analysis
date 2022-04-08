@@ -2,9 +2,13 @@
 FROM postgres:latest
 
 # Update default PostgreSQL environment variables
+# and set conda environment variables
 ENV POSTGRES_USER db_user
 ENV POSTGRES_PASSWORD LetMeIn
 ENV POSTGRES_DB msd_db
+ENV CONDA_DIR=/opt/conda \
+    SHELL=/bin/bash
+ENV PATH="${CONDA_DIR}/bin:${PATH}"
 
 # Swap to root to avoid using `sudo`
 USER root
@@ -14,11 +18,6 @@ RUN apt-get update && \
     apt-get install -y software-properties-common gcc wget && \
     apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Set environment variables for container
-ENV CONDA_DIR=/opt/conda \
-    SHELL=/bin/bash
-ENV PATH="${CONDA_DIR}/bin:${PATH}"
 
 # CONDA_MIRROR is a mirror prefix to speed up downloading
 ARG CONDA_MIRROR=https://github.com/conda-forge/miniforge/releases/latest/download
@@ -38,7 +37,12 @@ RUN set -x && \
 
 # Install necessary Python packages
 RUN mamba install --quiet --yes \
-    psycopg2 && \
+    psycopg2 \
+    pandas \
+    numpy \
+    h5py \
+    pytables \
+    sqlalchemy && \
     mamba clean --all -f -y
 
 # Download data to seed database, decompress
@@ -46,3 +50,7 @@ RUN mamba install --quiet --yes \
 RUN wget --quiet http://labrosa.ee.columbia.edu/~dpwe/tmp/millionsongsubset.tar.gz && \
     tar -xvzf millionsongsubset.tar.gz && \
     rm -f millionsongsubset.tar.gz
+
+# Copy database seeding scripts
+COPY seed_database.py .
+COPY seed_database.sh /docker-entrypoint-initdb.d
