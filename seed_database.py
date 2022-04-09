@@ -4,6 +4,7 @@
 import csv
 from io import StringIO
 import os
+import re
 
 ###############
 # Third-party #
@@ -77,34 +78,56 @@ def convert_h5_to_df(filepath='./MillionSongSubset/'):
                                     'artist_terms', 
                                     'similar_artists'
                                 ]:
+                                    # This regex replaces single-quotes with
+                                    # double-quotes so it parses correctly
+                                    # in PostgreSQL while avoiding singleton
+                                    # single-quotes like that found in "rock 'n roll"
+                                    pattern = re.compile(
+                                        r'(?:(?<!\w)\'((?:.|\n)+?\'?)(?:(?<!s)\'(?!\w)|(?<=s)\'(?!([^\']|\w\'\w)+\'(?!\w))))'
+                                    )
+                                    substitute = "\"\g<1>\""
+
+                                    # We need to create a string representation
+                                    # of the array data for PostgreSQL to
+                                    # parse the data correctly into the database
                                     try:
-                                        df_list.append(
-                                            pd.DataFrame({
-                                                attr_name: [
-                                                    str(np.char.decode(
-                                                            numpyized_data, 
-                                                            'utf-8'
-                                                        ).tolist()) \
-                                                        .replace('[', '{') \
-                                                        .replace(']', '}') \
-                                                        .replace('\'', '"')
-                                                ]
-                                            })
+                                        str_repr = re.sub(
+                                            pattern,
+                                            substitute,
+                                            str(
+                                                np.char.decode(
+                                                    numpyized_data, 
+                                                    'utf-8'
+                                                ).tolist()
+                                            ).replace('[', '{') \
+                                            .replace(']', '}') \
+                                            # this replacements below is necessary 
+                                            # to make the regex search work
+                                            .replace('\'n\'', '\'n') \
+                                            .replace('"', '\'')
                                         )
                                     except UnicodeDecodeError:
-                                        df_list.append(
-                                            pd.DataFrame({
-                                                attr_name: [
-                                                    str(np.char.decode(
-                                                            numpyized_data, 
-                                                            'latin-1'
-                                                        ).tolist()) \
-                                                        .replace('[', '{') \
-                                                        .replace(']', '}') \
-                                                        .replace('\'', '"')
-                                                ]
-                                            })
+                                        str_repr = re.sub(
+                                            pattern,
+                                            substitute,
+                                            str(
+                                                np.char.decode(
+                                                    numpyized_data, 
+                                                    'latin-1'
+                                                ).tolist()
+                                            ).replace('[', '{') \
+                                            .replace(']', '}') \
+                                            # this replacements below is necessary 
+                                            # to make the regex search work
+                                            .replace('\'n\'', '\'n') \
+                                            .replace('"', '\'')
                                         )
+
+                                    df_list.append(
+                                        pd.DataFrame({
+                                            attr_name: [str_repr]
+                                        })
+                                    )
                                 else:
                                     df_list.append(
                                         pd.DataFrame({
