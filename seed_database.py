@@ -101,7 +101,7 @@ def convert_h5_to_df(filepath='./MillionSongSubset/'):
                                                 ).tolist()
                                             ).replace('[', '{') \
                                             .replace(']', '}') \
-                                            # this replacements below is necessary 
+                                            # these replacements below are necessary 
                                             # to make the regex search work
                                             .replace('\'n\'', '\'n') \
                                             .replace('"', '\'')
@@ -117,7 +117,7 @@ def convert_h5_to_df(filepath='./MillionSongSubset/'):
                                                 ).tolist()
                                             ).replace('[', '{') \
                                             .replace(']', '}') \
-                                            # this replacements below is necessary 
+                                            # these replacements below are necessary 
                                             # to make the regex search work
                                             .replace('\'n\'', '\'n') \
                                             .replace('"', '\'')
