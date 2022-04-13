@@ -19,7 +19,8 @@ conda activate EMSE6586
 ````
 
 ## Usage
-1. Run the Docker image you just created to run the PostgreSQL server. Give a name to the container using `<CONTAINER NAME>`, and specify what port you want to use when accessing the database.
+### Running the PostgreSQL Database
+Run the Docker image you just created to run the PostgreSQL server. Give a name to the container using `<CONTAINER NAME>`, and specify what port you want to use when accessing the database.
 ```bash
 docker run --name <CONTAINER NAME> -p <PORT>:5432 -d <IMAGE NAME>
 ```
@@ -28,7 +29,13 @@ The Dockerfile specifies the following defaults:
 * Username: `db_user`
 * Password: `LetMeIn`  
 
-The Docker container will take about 15 - 20 minutes to fully get running before being able to access the database as it initializes the PostgreSQL database with the song data.
+The Docker container will take about 15 - 20 minutes to fully get running the first time before being able to access the database as it initializes the PostgreSQL database with the song data.
+
+Once you have run the Docker image and created a container, you can freely start and stop the container without having to recreate the container again using the following commands:
+```bash
+docker start <CONTAINER NAME>
+docker stop <CONTAINER NAME>
+````
 
 ## Authors and Acknowledgments
 Michael Salceda  
