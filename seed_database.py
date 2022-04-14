@@ -86,7 +86,7 @@ def convert_h5_to_df(filepath='./MillionSongSubset/'):
                                         r'(?:(?<!\w)\'((?:.|\n)+?\'?)(?:(?<!s)\'(?!\w)|(?<=s)\'(?!([^\']|\w\'\w)+\'(?!\w))))'
                                     )
                                     substitute = "\"\g<1>\""
-
+ 
                                     # We need to create a string representation
                                     # of the array data for PostgreSQL to
                                     # parse the data correctly into the database

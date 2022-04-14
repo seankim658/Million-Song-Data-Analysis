@@ -50,7 +50,7 @@ RUN mamba install --quiet --yes \
 RUN wget --quiet http://labrosa.ee.columbia.edu/~dpwe/tmp/millionsongsubset.tar.gz && \
     tar -xvzf millionsongsubset.tar.gz && \
     rm -f millionsongsubset.tar.gz
-
+ 
 # Copy database seeding scripts
 COPY seed_database.py .
 COPY seed_database.sh /docker-entrypoint-initdb.d
