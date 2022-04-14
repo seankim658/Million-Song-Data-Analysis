@@ -36,6 +36,67 @@ Once you have run the Docker image and created a container, you can freely start
 docker start <CONTAINER NAME>
 docker stop <CONTAINER NAME>
 ````
+## Data
+
+Provided by The Echo Nest. [The Echo Nest](https://en.wikipedia.org/wiki/The_Echo_Nest) is a music intelligence and data platform for developers and media companies owned by Spotify. 
+
+| **Field**                                              | **Type**       | **Description**                               |
+|--------------------------------------------------------|----------------|-----------------------------------------------|
+| track_id                                               | string         | Echo Nest track ID                            |
+| song_id                                                | string         | Echo Nest song ID                             |
+| title                                                  | string         | song title                                    |
+| track_7digitalid                                       | int            | ID from 7digital.com or -1                    |
+| analysis_sample_rate                                   | float          | sample rate of the audio used                 |
+| audio_md5                                              | string         | audio hash code                               |
+| danceability                                           | float          | algorithmic estimation of danceability        |
+| duration                                               | float          | in seconds                                    |
+| end_of_fade_in                                         | float          | seconds at the beginning of the song          |
+| energy                                                 | float          | energy from listener point of view            |
+| key                                                    | int            | key the song is in                            |
+| key_confidence                                         | float          | confidence measure                            |
+| loudness                                               | float          | overall loudness in dB                        |
+| mode                                                   | int            | major or minor                                |
+| mode_confidence                                        | float          | confidence measure                            |
+| start_of_fade_out                                      | float          | time in sec                                   |
+| tempo                                                  | float          | estimated tempo in BPM                        |
+| time_signature                                         | int            | estimate of number of beats per bar, e.g. 4   |
+| time_signature_confidence                              | float          | confidence measure                            |
+| bars_confidence                                        | array float    | confidence measure                            |
+| bars_start                                             | array float    | beginning of bars, usually on a beat          |
+| beats_confidence                                       | array float    | confidence measure                            |
+| beats_start                                            | array float    | result of beat tracking                       |
+| sections_confidence                                    | array float    | confidence measure                            |
+| sections_start                                         | array float    | largest grouping in a song, e.g. verse        |
+| segments_confidence                                    | array float    | confidence measure                            |
+| segments_loudness_max                                  | array float    | max dB value                                  |
+| segments_loudness_max_time                             | array float    | time of max dB value, i.e. end of attack      |
+| segments_loudness_start  (segments loudness max start) | array float    | dB value at onset                             |
+| segments_pitches                                       | 2D array float | chroma feature, one value per note            |
+| segments_start                                         | array float    | musical events, ~ note onsets                 |
+| segments_timbre                                        | 2D array float | texture features (MFCC+PCA-like)              |
+| tatums_confidence                                      | array float    | confidence measure                            |
+| tatums_start                                           | array float    | smallest rythmic element                      |
+| artist_terms                                           | array string   | Echo Nest tags                                |
+| artist_terms_freq                                      | array float    | Echo Nest tags freqs                          |
+| artist_terms_weight                                    | array float    | Echo Nest tags weight                         |
+| similar_artists                                        | array string   | Echo Nest artist IDs (sim. algo. unpublished) |
+| artist_7digitalid                                      | int            | ID from 7digital.com or -1                    |
+| artist_familiarity                                     | float          | algorithmic estimation                        |
+| artist_hotttnesss                                      | float          | algorithmic estimation                        |
+| artist_id                                              | string         | Echo Nest ID                                  |
+| artist_latitude                                        | float          | latitude                                      |
+| artist_longitude                                       | float          | longitude                                     |
+| artist_location                                        | string         | location name                                 |
+| artist_mbid                                            | string         | ID from musicbrainz.org                       |
+| artist_name                                            | string         | artist name                                   |
+| artist_playmeid                                        | int            | ID from playme.com, or -1                     |
+| genre                                                  |                |                                               |
+| release                                                | string         | album name                                    |
+| release_7digitalid                                     | int            | ID from 7digital.com or -1                    |
+| song_hotttnesss                                        | float          | algorithmic estimation                        |
+| artist_mbtags                                          | array string   | tags from musicbrainz.org                     |
+| artist_mbtags_count                                    | array int      | tag counts for musicbrainz tags               |
+| year                                                   | int            | song release year from MusicBrainz or 0       |
 
 ## Authors and Acknowledgments
 Michael Salceda  
